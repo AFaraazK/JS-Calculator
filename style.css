@@ -1,0 +1,55 @@
+body{
+    font-family: monospace;
+    color:white;
+    background-color: rgb(44, 44, 49);
+}
+.container{
+    margin: auto auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 600px;
+}
+
+.output{
+    height: 75px;
+    width: 225px;
+    background-color: rgb(30, 30, 30);
+    border:solid;
+    border-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.buttons{
+    display:inline-grid;
+    grid-template-columns: repeat(3,75px);
+    grid-template-rows: repeat(6,50px);
+    background-color: rgb(228, 228, 228);
+    border-radius: 8px;
+    border:solid;
+    border-color: black;
+
+}
+.container button{
+    outline: none;
+    border:black;
+    border-radius: 8px;
+}
+.container button:hover{
+    cursor: pointer;
+}
+#equals{
+    grid-column: span 2;
+}
+
+
+
+.container p{
+    color:rgb(119, 119, 119);
+}
