@@ -19,11 +19,26 @@ body{
     border:solid;
     border-color: black;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
     font-size: 18px;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+}
+.output-top{
+    color:gray;
+    font-style: italic;
+    /*
+    height: 30px;
+    width: 100%;
+    background-color: blue; */
+}
+.output-bottom{
+    /*
+    height: 45px;
+    width: 100%;
+    background-color:green; */
 }
 
 .buttons{
