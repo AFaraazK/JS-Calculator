@@ -63,7 +63,9 @@ body{
 #equals{
     grid-column: span 2;
 }
-
+.opButtons{
+    font-weight: bold;
+}
 
 
 .container p{
