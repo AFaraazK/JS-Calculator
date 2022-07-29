@@ -10,12 +10,12 @@
 <body>
     <div class="container">
         <div class="output">
-            <div class="output-top">00000</div>
+            <div class="output-top"></div>
             <div class="output-bottom"></div>
         </div>
         <div class="buttons">
             <button class="span-two allClear" onclick="clearAll()">AC</button>
-            <button class="delete">DEL</button>
+            <button class="delete" onclick="deleteBottom()">DEL</button>
             <button>.</button>
             <button class="numBtn">1</button>
             <button class="numBtn">2</button>
@@ -26,11 +26,11 @@
             <button class="numBtn">7</button>
             <button class="numBtn">8</button>
             <button class="numBtn">9</button>
-            <button>*</button>
-            <button>+</button>
-            <button>-</button>
-            <button>/</button>
-            <button class="span-two" id="equals">=</button>
+            <button onclick="operate(currentOperand, previousOperand,'*')">*</button>
+            <button onclick="operate(currentOperand, previousOperand,'+' )">+</button>
+            <button onclick="operate(currentOperand, previousOperand,'-')">-</button>
+            <button onclick="operate(currentOperand, previousOperand,'/')">/</button>
+            <button class="span-two" id="equals" onclick="operate(currentOperand, previousOperand,'=')">=</button>
         </div>
         <p>Zaaraf</p>
     </div>
