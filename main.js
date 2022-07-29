@@ -6,6 +6,7 @@
 // number on the bottom is the other number
 // when an operation is pressed, operate on it and the top
 // add the new number to the top, and clear the bottom
+// onclick="operate(currentOperand,previousOperand,+)"
 
 const add = (a,b) => a + b;
 const subtract = (a,b) => a - b;
@@ -20,41 +21,238 @@ const clearBtn = calculator.querySelector(".allClear");
 
 let currentOperand = '';
 let previousOperand = '';
-let value1, value2;
+let result = '';
+let nextOperator = undefined;
 
 function clearAll(){
-    value1 = undefined;
-    value2 = undefined;
     currentOperand = '';
     previousOperand = '';
+    nextOperator = undefined;
     displayLower.innerText = '';
     displayUpper.innerText = '';
 }
 function deleteBottom(){
     currentOperand = '';
+    displayLower.innerText = '';
 
 }
-function operate(num1, num2, op){
+
+// the button selects the future operation
+// but first, it carries out the remaining operation "nextOperation"
+// then sets nextOperation to whatever was clicked so the next
+
+// TODO: refactor this for brevity
+//     > Display portion is the same 3 lines, can be own function
+function operate(num1,num2,op){
     switch(op){
         case "+":
-            return add(num1,num2);
+            if(nextOperator == undefined){
+                result = +currentOperand + +previousOperand;
+                displayUpper.innerText = `${result}`;
+                displayLower.innerText = '';
+       
+                previousOperand = displayUpper.innerText;
+            }
+            else if(nextOperator == "+"){
+                result = +currentOperand + +previousOperand;
+                displayUpper.innerText = `${result}`;
+                displayLower.innerText = '';
+       
+                previousOperand = displayUpper.innerText;
+            }
+            else if(nextOperator == "-"){
+                result = +previousOperand - +currentOperand;
+                displayUpper.innerText = `${result}`;
+                displayLower.innerText = '';
+       
+                previousOperand = displayUpper.innerText;
+            }
+            else if(nextOperator == "*"){
+                result = previousOperand * currentOperand;
+                displayUpper.innerText = `${result}`;
+                displayLower.innerText = '';
+       
+                previousOperand = displayUpper.innerText;
+            }
+            else if(nextOperator == "/"){
+                result = previousOperand / currentOperand;
+                displayUpper.innerText = `${result}`;
+                displayLower.innerText = '';
+       
+                previousOperand = displayUpper.innerText;
+            }
+
+            nextOperator = "+";
             break;
         case "-":
-            return subtract(num1,num2);
+            if(nextOperator == undefined){
+                result = displayLower.innerText;
+                displayUpper.innerText = `${result}`;
+                displayLower.innerText = '';
+       
+                previousOperand = displayUpper.innerText;
+            }
+            else if(nextOperator == "+"){
+                result = +currentOperand + +previousOperand;
+                displayUpper.innerText = `${result}`;
+                displayLower.innerText = '';
+       
+                previousOperand = displayUpper.innerText;
+            }
+            else if(nextOperator == "-"){
+                result = +previousOperand - +currentOperand;
+                displayUpper.innerText = `${result}`;
+                displayLower.innerText = '';
+       
+                previousOperand = displayUpper.innerText;
+            }
+            else if(nextOperator == "*"){
+                result = previousOperand * currentOperand;
+                displayUpper.innerText = `${result}`;
+                displayLower.innerText = '';
+       
+                previousOperand = displayUpper.innerText;
+            }
+            else if(nextOperator == "/"){
+                result = previousOperand / currentOperand;
+                displayUpper.innerText = `${result}`;
+                displayLower.innerText = '';
+       
+                previousOperand = displayUpper.innerText;
+            }
+
+            nextOperator = "-";
             break;
         case "*":
-            return multiply(num1,num2);
+            if(nextOperator == undefined){
+                result = displayLower.innerText;
+                displayUpper.innerText = `${result}`;
+                displayLower.innerText = '';
+       
+                previousOperand = displayUpper.innerText;
+            }
+            else if(nextOperator == "+"){
+                result = +currentOperand + +previousOperand;
+                displayUpper.innerText = `${result}`;
+                displayLower.innerText = '';
+       
+                previousOperand = displayUpper.innerText;
+            }
+            else if(nextOperator == "-"){
+                result = +previousOperand - +currentOperand;
+                displayUpper.innerText = `${result}`;
+                displayLower.innerText = '';
+       
+                previousOperand = displayUpper.innerText;
+            }
+            else if(nextOperator == "*"){
+                result = currentOperand * previousOperand;
+                displayUpper.innerText = `${result}`;
+                displayLower.innerText = '';
+       
+                previousOperand = displayUpper.innerText;
+            }
+            else if(nextOperator == "/"){
+                result = previousOperand / currentOperand;
+                displayUpper.innerText = `${result}`;
+                displayLower.innerText = '';
+       
+                previousOperand = displayUpper.innerText;
+            }
+
+            nextOperator = "*";
             break;
         case "/":
-            return divide(num1,num2);
+            if(nextOperator == undefined){
+                result = displayLower.innerText;
+                displayUpper.innerText = `${result}`;
+                displayLower.innerText = '';
+       
+                previousOperand = displayUpper.innerText;
+            }
+            else if(nextOperator == "+"){
+                result = +currentOperand + +previousOperand;
+                displayUpper.innerText = `${result}`;
+                displayLower.innerText = '';
+       
+                previousOperand = displayUpper.innerText;
+            }
+            else if(nextOperator == "-"){
+                result = +previousOperand - +currentOperand;
+                displayUpper.innerText = `${result}`;
+                displayLower.innerText = '';
+       
+                previousOperand = displayUpper.innerText;
+            }
+            else if(nextOperator == "*"){
+                result = currentOperand * previousOperand;
+                displayUpper.innerText = `${result}`;
+                displayLower.innerText = '';
+       
+                previousOperand = displayUpper.innerText;
+            }
+            else if(nextOperator == "/"){
+                result = previousOperand / currentOperand;
+                displayUpper.innerText = `${result}`;
+                displayLower.innerText = '';
+       
+                previousOperand = displayUpper.innerText;
+            }
+
+            nextOperator = "/";
+            break;
+        case "=":
+            if(nextOperator == undefined){
+            }
+            else if(nextOperator == "+"){
+                result = +currentOperand + +previousOperand;
+                displayLower.innerText = `${result}`;
+                displayUpper.innerText = '';
+       
+                currentOperand = '';
+                previousOperand = displayLower.innerText;
+            }
+            else if(nextOperator == "-"){
+                result = +previousOperand - +currentOperand;
+                displayLower.innerText = `${result}`;
+                displayUpper.innerText = '';
+       
+                currentOperand = '';
+                previousOperand = displayLower.innerText;
+            }
+            else if(nextOperator == "*"){
+                result = currentOperand * previousOperand;
+                displayLower.innerText = `${result}`;
+                displayUpper.innerText = '';
+       
+                currentOperand = '';
+                previousOperand = displayLower.innerText;
+            }
+            else if(nextOperator == "/"){
+                result = previousOperand / currentOperand;
+                displayLower.innerText = `${result}`;
+                displayUpper.innerText = '';
+       
+                currentOperand = '';
+                previousOperand = displayLower.innerText;
+            }
+
+            nextOperator = undefined;
             break;
     }
+}
+
+function equals(){
+    // resolve previous operation
+    // move result to bottom
+    // clear top
 }
 
 for(let i=0;numBtns.length;i++){
     numBtns[i].addEventListener('click',e => {
         // console.log(e.target.textContent);
         displayLower.textContent += e.target.textContent;
-        value1 = displayLower.textContent;
+        currentOperand = displayLower.textContent;
     })
 }
+
