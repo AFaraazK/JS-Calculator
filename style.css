@@ -35,8 +35,9 @@ body{
     background-color: blue; */
 }
 .output-bottom{
+    height: 30px;
+    font-size: 24px;
     /*
-    height: 45px;
     width: 100%;
     background-color:green; */
 }
