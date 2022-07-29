@@ -8,11 +8,13 @@
 // add the new number to the top, and clear the bottom
 // onclick="operate(currentOperand,previousOperand,+)"
 
+// TODO: remove these;
 const add = (a,b) => a + b;
 const subtract = (a,b) => a - b;
 const multiply = (a,b) => a * b;
 const divide = (a,b) => a / b;
 
+// TODO: add decimal system
 const calculator = document.querySelector(".container");
 const numBtns = calculator.querySelectorAll(".numBtn");
 const displayLower = calculator.querySelector(".output-bottom");
@@ -48,157 +50,81 @@ function operate(num1,num2,op){
         case "+":
             if(nextOperator == undefined){
                 result = +currentOperand + +previousOperand;
-                displayUpper.innerText = `${result}`;
-                displayLower.innerText = '';
-       
-                previousOperand = displayUpper.innerText;
             }
             else if(nextOperator == "+"){
                 result = +currentOperand + +previousOperand;
-                displayUpper.innerText = `${result}`;
-                displayLower.innerText = '';
-       
-                previousOperand = displayUpper.innerText;
             }
             else if(nextOperator == "-"){
                 result = +previousOperand - +currentOperand;
-                displayUpper.innerText = `${result}`;
-                displayLower.innerText = '';
-       
-                previousOperand = displayUpper.innerText;
             }
             else if(nextOperator == "*"){
                 result = previousOperand * currentOperand;
-                displayUpper.innerText = `${result}`;
-                displayLower.innerText = '';
-       
-                previousOperand = displayUpper.innerText;
             }
             else if(nextOperator == "/"){
                 result = previousOperand / currentOperand;
-                displayUpper.innerText = `${result}`;
-                displayLower.innerText = '';
-       
-                previousOperand = displayUpper.innerText;
             }
 
+            updateDisplay(result)
             nextOperator = "+";
             break;
         case "-":
             if(nextOperator == undefined){
                 result = displayLower.innerText;
-                displayUpper.innerText = `${result}`;
-                displayLower.innerText = '';
-       
-                previousOperand = displayUpper.innerText;
             }
             else if(nextOperator == "+"){
                 result = +currentOperand + +previousOperand;
-                displayUpper.innerText = `${result}`;
-                displayLower.innerText = '';
-       
-                previousOperand = displayUpper.innerText;
             }
             else if(nextOperator == "-"){
                 result = +previousOperand - +currentOperand;
-                displayUpper.innerText = `${result}`;
-                displayLower.innerText = '';
-       
-                previousOperand = displayUpper.innerText;
             }
             else if(nextOperator == "*"){
                 result = previousOperand * currentOperand;
-                displayUpper.innerText = `${result}`;
-                displayLower.innerText = '';
-       
-                previousOperand = displayUpper.innerText;
             }
             else if(nextOperator == "/"){
                 result = previousOperand / currentOperand;
-                displayUpper.innerText = `${result}`;
-                displayLower.innerText = '';
-       
-                previousOperand = displayUpper.innerText;
             }
 
+            updateDisplay(result)
             nextOperator = "-";
             break;
         case "*":
             if(nextOperator == undefined){
                 result = displayLower.innerText;
-                displayUpper.innerText = `${result}`;
-                displayLower.innerText = '';
-       
-                previousOperand = displayUpper.innerText;
             }
             else if(nextOperator == "+"){
                 result = +currentOperand + +previousOperand;
-                displayUpper.innerText = `${result}`;
-                displayLower.innerText = '';
-       
-                previousOperand = displayUpper.innerText;
             }
             else if(nextOperator == "-"){
                 result = +previousOperand - +currentOperand;
-                displayUpper.innerText = `${result}`;
-                displayLower.innerText = '';
-       
-                previousOperand = displayUpper.innerText;
             }
             else if(nextOperator == "*"){
                 result = currentOperand * previousOperand;
-                displayUpper.innerText = `${result}`;
-                displayLower.innerText = '';
-       
-                previousOperand = displayUpper.innerText;
             }
             else if(nextOperator == "/"){
                 result = previousOperand / currentOperand;
-                displayUpper.innerText = `${result}`;
-                displayLower.innerText = '';
-       
-                previousOperand = displayUpper.innerText;
             }
 
+            updateDisplay(result)
             nextOperator = "*";
             break;
         case "/":
             if(nextOperator == undefined){
                 result = displayLower.innerText;
-                displayUpper.innerText = `${result}`;
-                displayLower.innerText = '';
-       
-                previousOperand = displayUpper.innerText;
             }
             else if(nextOperator == "+"){
                 result = +currentOperand + +previousOperand;
-                displayUpper.innerText = `${result}`;
-                displayLower.innerText = '';
-       
-                previousOperand = displayUpper.innerText;
             }
             else if(nextOperator == "-"){
                 result = +previousOperand - +currentOperand;
-                displayUpper.innerText = `${result}`;
-                displayLower.innerText = '';
-       
-                previousOperand = displayUpper.innerText;
             }
             else if(nextOperator == "*"){
                 result = currentOperand * previousOperand;
-                displayUpper.innerText = `${result}`;
-                displayLower.innerText = '';
-       
-                previousOperand = displayUpper.innerText;
             }
             else if(nextOperator == "/"){
                 result = previousOperand / currentOperand;
-                displayUpper.innerText = `${result}`;
-                displayLower.innerText = '';
-       
-                previousOperand = displayUpper.innerText;
             }
 
+            updateDisplay(result)
             nextOperator = "/";
             break;
         case "=":
@@ -242,10 +168,19 @@ function operate(num1,num2,op){
     }
 }
 
-function equals(){
-    // resolve previous operation
-    // move result to bottom
-    // clear top
+function decimalClick(){
+    if(currentOperand.includes(".")){
+        return;
+    } else{
+        displayLower.textContent += ".";
+        currentOperand = displayLower.textContent;
+    }
+}
+function updateDisplay(result){
+    displayUpper.innerText = `${result}`;
+    displayLower.innerText = '';
+       
+    previousOperand = displayUpper.innerText;
 }
 
 for(let i=0;numBtns.length;i++){
@@ -255,4 +190,3 @@ for(let i=0;numBtns.length;i++){
         currentOperand = displayLower.textContent;
     })
 }
-
